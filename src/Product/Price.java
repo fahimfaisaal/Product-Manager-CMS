@@ -6,35 +6,31 @@ public class Price {
 	private double regularPrice;
 	private int discount;
 	private final Currency currency;
-	private final double saveAmount;
 
 	public Price(double regularPrice, int discount, Currency currency) {
 		this.regularPrice = regularPrice;
 		this.discount = discount;
-		this.saveAmount = this.regularPrice * (this.discount / 100.00);
 		this.currency = currency;
 	}
 
 	public Price(double regularPrice, int discount) {
 		this.regularPrice = regularPrice;
 		this.discount = discount;
-		this.saveAmount = this.regularPrice * (this.discount / 100.00);
 		this.currency = Currency.TK;
 	}
 
 	public Price(double regularPrice) {
 		this.regularPrice = regularPrice;
 		this.discount = 0;
-		this.saveAmount = this.regularPrice * (this.discount / 100.00);
 		this.currency = Currency.TK;
 	}
 
-	public String currentPrice() {
-		return (this.regularPrice - saveAmount) + "" + this.getCurrencySymbol();
+	private double saveAmount(double price, int disc) {
+		return price * (disc / 100.00);
 	}
 
-	public String getSaveAmount() {
-		return this.saveAmount + "" + this.getCurrencySymbol();
+	public String currentPrice() {
+		return (this.regularPrice - this.saveAmount(this.regularPrice, this.discount)) + "" + this.getCurrencySymbol();
 	}
 
 	public String getRegularPrice() {
@@ -63,7 +59,7 @@ public class Price {
 	}
 
 	public String getDiscount() {
-		return discount + "%";
+		return this.discount + "%";
 	}
 
 	public void setDiscount(int discount) {
@@ -76,7 +72,7 @@ public class Price {
 				 "regularPrice=" + this.getRegularPrice() +
 				 ", discount=" + this.getDiscount() +
 				 ", currentPrice=" + this.currentPrice() +
-				 ", saveAmount=" + this.getSaveAmount() +
+				 ", saveAmount=" + this.saveAmount(this.regularPrice, this.discount) +
 				 '}';
 	}
 }
