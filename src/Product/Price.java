@@ -1,13 +1,14 @@
 package Product;
 
+import Product.enums.CurrencyUnit;
 import java.util.Locale;
 
 public class Price {
 	private double regularPrice;
 	private int discount;
-	private final Currency currency;
+	private final CurrencyUnit currency;
 
-	public Price(double regularPrice, int discount, Currency currency) {
+	public Price(double regularPrice, int discount, CurrencyUnit currency) {
 		this.regularPrice = regularPrice;
 		this.discount = discount;
 		this.currency = currency;
@@ -16,13 +17,13 @@ public class Price {
 	public Price(double regularPrice, int discount) {
 		this.regularPrice = regularPrice;
 		this.discount = discount;
-		this.currency = Currency.TK;
+		this.currency = CurrencyUnit.TK;
 	}
 
 	public Price(double regularPrice) {
 		this.regularPrice = regularPrice;
 		this.discount = 0;
-		this.currency = Currency.TK;
+		this.currency = CurrencyUnit.TK;
 	}
 
 	private double saveAmount(double price, int disc) {
@@ -51,7 +52,6 @@ public class Price {
 			case "AUD" -> "A$";
 			default -> "৳";
 		};
-
 	}
 
 	public void setRegularPrice(double regularPrice) {
@@ -69,10 +69,10 @@ public class Price {
 	@Override
 	public String toString() {
 		return "Price {" +
-				 "regularPrice=" + this.getRegularPrice() +
-				 ", discount=" + this.getDiscount() +
-				 ", currentPrice=" + this.currentPrice() +
-				 ", saveAmount=" + this.saveAmount(this.regularPrice, this.discount) +
+				 " regularPrice=" + this.getRegularPrice() + ",\n" +
+				 " discount=" + this.getDiscount() + ",\n" +
+				 " currentPrice=" + this.currentPrice() + ",\n" +
+				 " saveAmount=" + this.saveAmount(this.regularPrice, this.discount) + "\n" +
 				 '}';
 	}
 }

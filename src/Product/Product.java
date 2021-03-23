@@ -6,7 +6,7 @@ public class Product {
 	private String brand;
 	private String productStatus;
 
-	private String[] features = new String[10];
-	private String[] FAQ = new String[5];
+//	private String features = new String();
+//	private String[] FAQ = new String[5];
 
 }

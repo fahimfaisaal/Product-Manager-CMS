@@ -1,4 +1,4 @@
-package Product;
+package Product.enums;
 
 public enum Status {
 	UPCOMING,
