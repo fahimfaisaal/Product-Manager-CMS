@@ -4,46 +4,44 @@ import Product.enums.CurrencyUnit;
 import java.util.Locale;
 
 public class Price {
-	private double regularPrice;
+	private double regular;
 	private int discount;
-	private final CurrencyUnit currency;
+	private CurrencyUnit currencyUnit;
 
-	public Price(double regularPrice, int discount, CurrencyUnit currency) {
-		this.regularPrice = regularPrice;
-		this.discount = discount;
-		this.currency = currency;
-	}
+	private final CurrencyUnit[] currencyUnits = {CurrencyUnit.TK, CurrencyUnit.DOLLAR, CurrencyUnit.INR, CurrencyUnit.AUD, CurrencyUnit.EURO};
 
-	public Price(double regularPrice, int discount) {
-		this.regularPrice = regularPrice;
-		this.discount = discount;
-		this.currency = CurrencyUnit.TK;
-	}
-
-	public Price(double regularPrice) {
-		this.regularPrice = regularPrice;
+	public Price() {
+		this.regular = 0.0;
 		this.discount = 0;
-		this.currency = CurrencyUnit.TK;
+		this.currencyUnit = CurrencyUnit.TK;
 	}
 
-	private double saveAmount(double price, int disc) {
-		return price * (disc / 100.00);
+	public double getSaveAmount() {
+		return this.regular * (this.discount / 100.00);
 	}
 
-	public String currentPrice() {
-		return (this.regularPrice - this.saveAmount(this.regularPrice, this.discount)) + "" + this.getCurrencySymbol();
+	public double getCurrent() {
+		return this.regular - this.getSaveAmount();
 	}
 
-	public String getRegularPrice() {
-		return regularPrice + "" + this.getCurrencySymbol();
+	public double getRegular() {
+		return regular;
 	}
 
-	public String getCurrency() {
-		return this.currency.toString().toLowerCase(Locale.ROOT);
+	public String getDiscount() {
+		return this.discount + "%";
+	}
+
+	public CurrencyUnit getCurrency() {
+		return this.currencyUnit;
+	}
+
+	public CurrencyUnit getCurrencyUnit(int index) {
+		return this.currencyUnits[index - 1];
 	}
 
 	public String getCurrencySymbol() {
-		String curr = this.currency.toString();
+		String curr = this.currencyUnit.toString();
 
 		return switch (curr) {
 			case "EURO" -> "€";
@@ -54,25 +52,36 @@ public class Price {
 		};
 	}
 
-	public void setRegularPrice(double regularPrice) {
-		this.regularPrice = regularPrice;
-	}
-
-	public String getDiscount() {
-		return this.discount + "%";
+	public void setRegular(double regular) {
+		this.regular = regular;
 	}
 
 	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
 
+	public void setCurrencyUnit(CurrencyUnit unit) {
+		this.currencyUnit = unit;
+	}
+
+	public String viewCurrency() {
+		StringBuilder units = new StringBuilder();
+		int i = 1;
+
+		for (CurrencyUnit unit: currencyUnits) {
+			units.append(i).append(".").append(unit).append('\n');
+		}
+
+		return units.toString();
+	}
+
 	@Override
 	public String toString() {
 		return "Price {" +
-				 " regularPrice=" + this.getRegularPrice() + ",\n" +
+				 " regularPrice=" + this.getRegular() + this.getCurrencySymbol() + ",\n" +
 				 " discount=" + this.getDiscount() + ",\n" +
-				 " currentPrice=" + this.currentPrice() + ",\n" +
-				 " saveAmount=" + this.saveAmount(this.regularPrice, this.discount) + "\n" +
+				 " currentPrice=" + this.getCurrent() + this.getCurrencySymbol() + ",\n" +
+				 " saveAmount=" + this.getSaveAmount() + this.getCurrencySymbol() + "\n" +
 				 '}';
 	}
 }

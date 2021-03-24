@@ -3,38 +3,12 @@ package Product;
 import Product.enums.CapacityUnit;
 
 public class KeyFeatures {
-	private final long capacity;
-	private final CapacityUnit capacityUnit;
-	private final String readSpeed;
-	private final String connectivity;
+	private long capacity;
+	private CapacityUnit capacityUnit;
+	private String readSpeed;
+	private String connectivity;
 
-	public KeyFeatures(long capacity, CapacityUnit capacityUnit, String readSpeed, String connectivity) {
-		this.capacity = capacity;
-		this.capacityUnit = capacityUnit;
-		this.readSpeed = readSpeed;
-		this.connectivity = connectivity;
-	}
-
-	public KeyFeatures(long capacity, CapacityUnit capacityUnit, String readSpeed) {
-		this.capacity = capacity;
-		this.capacityUnit = capacityUnit;
-		this.readSpeed = readSpeed;
-		this.connectivity = null;
-	}
-
-	public KeyFeatures(long capacity, CapacityUnit capacityUnit) {
-		this.capacity = capacity;
-		this.capacityUnit = capacityUnit;
-		this.readSpeed = null;
-		this.connectivity = null;
-	}
-
-	public KeyFeatures(long capacity) {
-		this.capacity = capacity;
-		this.capacityUnit = CapacityUnit.KB;
-		this.readSpeed = null;
-		this.connectivity = null;
-	}
+	private final CapacityUnit[] capacityUnits = {CapacityUnit.TB, CapacityUnit.GB, CapacityUnit.MB, CapacityUnit.KB};
 
 	public KeyFeatures() {
 		this.capacity = 0;
@@ -47,8 +21,8 @@ public class KeyFeatures {
 		return this.capacity + "" + this.capacityUnit;
 	}
 
-	public CapacityUnit getCapacityUnit() {
-		return capacityUnit;
+	public CapacityUnit getCapacityUnit(int index) {
+		return capacityUnits[index - 1];
 	}
 
 	public String getReadSpeed() {
@@ -57,6 +31,33 @@ public class KeyFeatures {
 
 	public String getConnectivity() {
 		return connectivity;
+	}
+
+	public void setCapacity(long capacity) {
+		this.capacity = capacity;
+	}
+
+	public void setCapacityUnit(CapacityUnit capacityUnit) {
+		this.capacityUnit = capacityUnit;
+	}
+
+	public void setReadSpeed(String readSpeed) {
+		this.readSpeed = readSpeed;
+	}
+
+	public void setConnectivity(String connectivity) {
+		this.connectivity = connectivity;
+	}
+
+	public String viewCapacityUnits() {
+		StringBuilder units = new StringBuilder();
+		int i = 1;
+
+		for (CapacityUnit unit: capacityUnits) {
+			units.append(i++).append(".").append(unit).append('\n');
+		}
+
+		return units.toString();
 	}
 
 	@Override
