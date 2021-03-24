@@ -1,7 +1,7 @@
 package Product.enums;
 
 public enum DimensionUnit {
-	mm,
+	m,
 	cm,
-	m
+	mm
 }
