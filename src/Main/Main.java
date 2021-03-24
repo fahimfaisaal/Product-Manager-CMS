@@ -1,17 +1,17 @@
 package Main;
 import Product.PhysicalAttribute;
-import Product.enums.DimensionUnit;
-import Product.enums.WeightUnit;
+import Product.Price;
 
 public class Main {
 
     public static void main(String[] args) {
-        PhysicalAttribute obj = new PhysicalAttribute(60, 20, 9, DimensionUnit.cm, 10, WeightUnit.g);
+        PhysicalAttribute obj = new PhysicalAttribute();
+        Price price = new Price();
 
-        String[] req = {"Windows XP", "Vista, 7, 8, 8.1, 10", "Mac OS X 10.6 or later", "Linux kernel 2.6 or later", "with no device driver needed"};
+        price.setRegular(1444.345);
+        price.setDiscount(25);
+        System.out.println(price.getSaveAmount());
 
-        obj.setSystemRequirement(req);
-
-        System.out.println(obj.toString());
+        System.out.println(price.toString());
     }
 }
