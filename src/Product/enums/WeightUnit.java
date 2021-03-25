@@ -1,6 +1,8 @@
 package Product.enums;
 
 public enum WeightUnit {
-	Kg,
-	g
+	KG,
+	G,
+	LT,
+	POUND
 }
