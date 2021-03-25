@@ -1,12 +1,14 @@
 package Product;
 
 import Product.enums.CapacityUnit;
+import java.util.Scanner;
 
 public class KeyFeatures {
 	private long capacity;
 	private CapacityUnit capacityUnit;
 	private String readSpeed;
 	private String connectivity;
+	private final Scanner scan = new Scanner(System.in);
 
 	private final CapacityUnit[] capacityUnits = {CapacityUnit.TB, CapacityUnit.GB, CapacityUnit.MB, CapacityUnit.KB};
 
@@ -21,35 +23,24 @@ public class KeyFeatures {
 		return this.capacity + "" + this.capacityUnit;
 	}
 
-	public CapacityUnit getCapacityUnit(int index) {
-		return capacityUnits[index - 1];
-	}
-
-	public String getReadSpeed() {
-		return readSpeed;
-	}
-
-	public String getConnectivity() {
-		return connectivity;
-	}
-
 	public void setCapacity(long capacity) {
 		this.capacity = capacity;
 	}
 
-	public void setCapacityUnit(CapacityUnit capacityUnit) {
+	private CapacityUnit getCapacityUnit(int index) {
+		if (index > capacityUnits.length) {
+			System.out.println("index is out of length");
+			return this.capacityUnit;
+		}
+
+		return capacityUnits[index - 1];
+	}
+
+	private void setCapacityUnit(CapacityUnit capacityUnit) {
 		this.capacityUnit = capacityUnit;
 	}
 
-	public void setReadSpeed(String readSpeed) {
-		this.readSpeed = readSpeed;
-	}
-
-	public void setConnectivity(String connectivity) {
-		this.connectivity = connectivity;
-	}
-
-	public String viewCapacityUnits() {
+	private String viewCapacityUnits() {
 		StringBuilder units = new StringBuilder();
 		int i = 1;
 
@@ -58,6 +49,31 @@ public class KeyFeatures {
 		}
 
 		return units.toString();
+	}
+
+	public void setCapacityUnitByUser() {
+		System.out.println(this.viewCapacityUnits());
+		System.out.print("Select a capacity unit: ");
+
+		int index = scan.nextInt();
+
+		this.setCapacityUnit(this.getCapacityUnit(index));
+	}
+
+	public String getReadSpeed() {
+		return readSpeed;
+	}
+
+	public void setReadSpeed(String readSpeed) {
+		this.readSpeed = readSpeed;
+	}
+
+	public String getConnectivity() {
+		return connectivity;
+	}
+
+	public void setConnectivity(String connectivity) {
+		this.connectivity = connectivity;
 	}
 
 	@Override

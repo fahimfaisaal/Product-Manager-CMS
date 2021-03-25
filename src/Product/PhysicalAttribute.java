@@ -12,17 +12,17 @@ public class PhysicalAttribute {
 	private WeightUnit weightUnit;
 
 	private final String[] systemRequirement = new String[10];
-	private final DimensionUnit[] dimensionUnits = {DimensionUnit.cm, DimensionUnit.mm, DimensionUnit.m};
-	private final WeightUnit[] weightUnits = {WeightUnit.Kg, WeightUnit.g};
+	private final DimensionUnit[] dimensionUnits = {DimensionUnit.CM, DimensionUnit.MM, DimensionUnit.M};
+	private final WeightUnit[] weightUnits = {WeightUnit.KG, WeightUnit.LT, WeightUnit.G, WeightUnit.POUND};
 	private int reqIndex = 0;
 
 	public PhysicalAttribute() {
 		this.width = 0;
 		this.height = 0;
 		this.length = 0;
-		this.dimensionUnit = DimensionUnit.mm;
+		this.dimensionUnit = DimensionUnit.MM;
 		this.weight = 0;
-		this.weightUnit = WeightUnit.g;
+		this.weightUnit = WeightUnit.G;
 	}
 
 	public int getWidth() {

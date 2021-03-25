@@ -1,12 +1,13 @@
 package Product;
 
 import Product.enums.CurrencyUnit;
-import java.util.Locale;
+import java.util.Scanner;
 
 public class Price {
 	private double regular;
 	private int discount;
 	private CurrencyUnit currencyUnit;
+	private final Scanner scan = new Scanner(System.in);
 
 	private final CurrencyUnit[] currencyUnits = {CurrencyUnit.TK, CurrencyUnit.DOLLAR, CurrencyUnit.INR, CurrencyUnit.AUD, CurrencyUnit.EURO};
 
@@ -28,16 +29,34 @@ public class Price {
 		return regular;
 	}
 
+	public void setRegular(double regular) {
+		this.regular = regular;
+	}
+
 	public String getDiscount() {
 		return this.discount + "%";
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
 	}
 
 	public CurrencyUnit getCurrency() {
 		return this.currencyUnit;
 	}
 
-	public CurrencyUnit getCurrencyUnit(int index) {
+	private CurrencyUnit getCurrencyUnit(int index) {
+		if (index > currencyUnits.length) {
+			System.out.println("index is out of length!");
+
+			return this.getCurrency();
+		}
+
 		return this.currencyUnits[index - 1];
+	}
+
+	private void setCurrencyUnit(CurrencyUnit unit) {
+		this.currencyUnit = unit;
 	}
 
 	public String getCurrencySymbol() {
@@ -52,27 +71,23 @@ public class Price {
 		};
 	}
 
-	public void setRegular(double regular) {
-		this.regular = regular;
-	}
-
-	public void setDiscount(int discount) {
-		this.discount = discount;
-	}
-
-	public void setCurrencyUnit(CurrencyUnit unit) {
-		this.currencyUnit = unit;
-	}
-
-	public String viewCurrency() {
+	private String viewCurrency() {
 		StringBuilder units = new StringBuilder();
 		int i = 1;
 
 		for (CurrencyUnit unit: currencyUnits) {
-			units.append(i).append(".").append(unit).append('\n');
+			units.append(i++).append(".").append(unit).append('\n');
 		}
 
 		return units.toString();
+	}
+
+	public void setCurrencyUnitByUser() {
+		System.out.println(this.viewCurrency());
+		System.out.print("Select a currency unit: ");
+
+		int index = scan.nextInt();
+		this.setCurrencyUnit(this.getCurrencyUnit(index));
 	}
 
 	@Override
