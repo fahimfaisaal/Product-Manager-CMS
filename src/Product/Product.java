@@ -148,6 +148,7 @@ public class Product {
 	}
 
 	public void setFaqsByUser() {
+		Console.clear();
 		if (faqs.length == faqIndex) {
 			System.out.print("""
    		FAQ's store is full :(
@@ -174,6 +175,7 @@ public class Product {
 		if (numberOfFaqs > 10 || numberOfFaqs > 10 - faqIndex) {
 			numberOfFaqs = 0;
 
+			Console.clear();
 			System.out.print("""
 			Number is out of range!
 			* Enter 1 for retry.
@@ -188,6 +190,7 @@ public class Product {
 	}
 
 	public void removeFAQs() {
+		Console.clear();
 		System.out.print("Enter the number of delete: ");
 
 		int deleteCount = Math.abs(scan.nextInt());

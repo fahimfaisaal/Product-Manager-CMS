@@ -7,11 +7,19 @@ import java.util.Scanner;
 
 public class Specification {
 	private final KeyFeatures keyFeatures = new KeyFeatures();
-	private final PhysicalAttribute physicalAttribute = new PhysicalAttribute();
+	private final PhysicalAttribute physicalAttributes = new PhysicalAttribute();
 	private Warranty warranty;
 
 	private final Scanner scan = new Scanner(System.in);
 	private final Warranty[] warranties = {Warranty.NO_WARRANTY, Warranty.YEAR_WARRANTY, Warranty.YEARS_WARRANTY, Warranty.LIFETIME_WARRANTY};
+
+	public KeyFeatures getKeyFeatures() {
+		return this.keyFeatures;
+	}
+
+	public PhysicalAttribute getPhysicalAttributes() {
+		return this.physicalAttributes;
+	}
 
 	public Specification() {
 		this.warranty = Warranty.NO_WARRANTY;
@@ -47,6 +55,7 @@ public class Specification {
 	}
 
 	public void setWarrantyByUser() {
+		Console.clear();
 		System.out.println(this.viewWarranties());
 		System.out.print("Select a warranty: ");
 

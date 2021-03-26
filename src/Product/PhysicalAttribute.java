@@ -2,6 +2,8 @@ package Product;
 
 import Product.enums.DimensionUnit;
 import Product.enums.WeightUnit;
+
+import java.util.Locale;
 import java.util.Scanner;
 
 public class PhysicalAttribute {
@@ -39,12 +41,16 @@ public class PhysicalAttribute {
 		return length;
 	}
 
-	public int getWeight() {
-		return weight;
+	public String getWeight() {
+		return weight + "" + this.weightUnit.toString().toLowerCase(Locale.ROOT);
 	}
 
 	public DimensionUnit getDimensionUnit(int index) {
 		return dimensionUnits[index - 1];
+	}
+
+	public String getDimension() {
+		return this.width + "(w) x " + this.height + "(h) x " + this.length + "(l)" + this.dimensionUnit.toString().toLowerCase(Locale.ROOT);
 	}
 
 	public WeightUnit getWeightUnit(int index) {
@@ -59,7 +65,8 @@ public class PhysicalAttribute {
 		StringBuilder req = new StringBuilder();
 
 		for (int i = 0; i < reqIndex; i++) {
-			req.append(" * ").append(systemRequirement[i]).append('\n');
+			if (i < reqIndex - 1) req.append(" * ").append(systemRequirement[i]).append(", ");
+			else req.append(" * ").append(systemRequirement[i]);
 		}
 
 		return req.toString();
@@ -92,10 +99,10 @@ public class PhysicalAttribute {
 	public void setSystemRequirements() {
 		if (systemRequirement.length == reqIndex) {
 			System.out.print("""
-   		Requirements store is full :(
-   		* Enter 1 for remove requirement
-   		* Enter any for exit
-			:\s""");
+			Requirements store is full
+			Enter 1 for remove item.
+			Enter any for exit.
+			: """);
 
 			int in = Math.abs(scan.nextInt());
 

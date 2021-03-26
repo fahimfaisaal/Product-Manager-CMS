@@ -28,10 +28,10 @@ public class Features {
 	public void setFeatures() {
 		if (features.length == featuresIndex) {
 			System.out.print("""
-   		Features store is full :(
-   		* Enter 1 for remove feature
-   		* Enter any for exit
-			:\s""");
+			Feature's store is full :(
+			Enter 1 for remove features.
+			Enter any for exit.
+			: """);
 
 			int in = Math.abs(scan.nextInt());
 
@@ -56,7 +56,8 @@ public class Features {
 			System.out.println("""
 			Number is out of range!
 			* Enter 1 for retry
-			* Enter any for exit:""");
+			* Enter any for exit
+			: """);
 
 			int in = Math.abs(scan.nextInt());
 			if (in == 1) this.setFeatures();
