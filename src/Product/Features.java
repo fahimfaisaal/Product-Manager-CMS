@@ -25,7 +25,7 @@ public class Features {
 		features[--featuresIndex] = null;
 	}
 
-	public void setFeatures() {
+	public void setFeatureByUser() {
 		if (features.length == featuresIndex) {
 			System.out.print("""
 			Feature's store is full :(
@@ -60,7 +60,7 @@ public class Features {
 			: """);
 
 			int in = Math.abs(scan.nextInt());
-			if (in == 1) this.setFeatures();
+			if (in == 1) this.setFeatureByUser();
 		}
 
 		for (int i = 0; i < numberOfFeatures; i++) {

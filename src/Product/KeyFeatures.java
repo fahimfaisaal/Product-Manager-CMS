@@ -23,8 +23,9 @@ public class KeyFeatures {
 		return this.capacity + "" + this.capacityUnit;
 	}
 
-	public void setCapacity(long capacity) {
-		this.capacity = capacity;
+	public void setCapacity() {
+		System.out.print("Enter the Products capacity: ");
+		this.capacity = scan.nextLong();
 	}
 
 	private CapacityUnit getCapacityUnit(int index) {
@@ -64,16 +65,18 @@ public class KeyFeatures {
 		return readSpeed;
 	}
 
-	public void setReadSpeed(String readSpeed) {
-		this.readSpeed = readSpeed;
+	public void setReadSpeed() {
+		System.out.print("Enter the read speed: ");
+		this.readSpeed = scan.nextLine();
 	}
 
 	public String getConnectivity() {
 		return connectivity;
 	}
 
-	public void setConnectivity(String connectivity) {
-		this.connectivity = connectivity;
+	public void setConnectivity() {
+		System.out.print("Enter a connectivity: ");
+		this.connectivity = scan.nextLine();
 	}
 
 	@Override

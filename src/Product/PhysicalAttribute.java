@@ -33,19 +33,47 @@ public class PhysicalAttribute {
 		return width;
 	}
 
+	public void setWidth() {
+		System.out.print("Enter the Products width: ");
+		this.width = Math.abs(scan.nextInt());
+		scan.nextLine();
+	}
+
 	public int getHeight() {
 		return height;
+	}
+
+	public void setHeight() {
+		System.out.print("Enter the Products height: ");
+		this.height = Math.abs(scan.nextInt());
+		scan.nextLine();
 	}
 
 	public int getLength() {
 		return length;
 	}
 
+	public void setLength() {
+		System.out.print("Enter the Products length: ");
+		this.length = Math.abs(scan.nextInt());
+		scan.nextLine();
+	}
+
 	public String getWeight() {
 		return weight + "" + this.weightUnit.toString().toLowerCase(Locale.ROOT);
 	}
 
-	public DimensionUnit getDimensionUnit(int index) {
+	public void setWeight() {
+		System.out.print("Enter the Products weight: ");
+		this.weight = Math.abs(scan.nextInt());
+		scan.nextLine();
+	}
+
+	private DimensionUnit getDimensionUnit(int index) {
+		if (index > dimensionUnits.length) {
+			return this.viewDimensionUnit();
+		}
+
 		return dimensionUnits[index - 1];
 	}
 
@@ -53,8 +81,63 @@ public class PhysicalAttribute {
 		return this.width + "(w) x " + this.height + "(h) x " + this.length + "(l)" + this.dimensionUnit.toString().toLowerCase(Locale.ROOT);
 	}
 
-	public WeightUnit getWeightUnit(int index) {
+	private void setDimensionUnit(DimensionUnit unit) {
+		this.dimensionUnit = unit;
+	}
+
+	public void setDimensionUnitByUser() {
+		System.out.println(this.viewDimensionUnits());
+		System.out.print("Select an Unit: ");
+
+		int in = Math.abs(scan.nextInt());
+		scan.nextLine();
+
+		this.setDimensionUnit(this.getDimensionUnit(in));
+	}
+
+	public DimensionUnit viewDimensionUnit() {
+		return this.dimensionUnit;
+	}
+
+	public String viewDimensionUnits() {
+		StringBuilder dimensionUnits = new StringBuilder();
+		int i = 1;
+
+		for (DimensionUnit unit: this.dimensionUnits) {
+			dimensionUnits.append(i++).append(".")
+			.append(unit).append('\n');
+		}
+
+		return dimensionUnits.toString();
+	}
+
+	private WeightUnit getWeightUnit(int index) {
 		return weightUnits[index - 1];
+	}
+
+	public void setWeightUnit(WeightUnit weightUnit) {
+		this.weightUnit = weightUnit;
+	}
+
+	public void setWeightUnitByUser() {
+		System.out.println(this.viewWeightUnits());
+		System.out.println("Select an unit: ");
+
+		int in = Math.abs(scan.nextInt());
+		scan.nextLine();
+
+		this.setWeightUnit(this.getWeightUnit(in));
+	}
+
+	private String viewWeightUnits() {
+		StringBuilder weightUnits = new StringBuilder();
+		int i = 1;
+
+		for (WeightUnit unit: this.weightUnits) {
+			weightUnits.append(i++).append(".").append(unit).append('\n');
+		}
+
+		return weightUnits.toString();
 	}
 
 	public int getReqIndex() {
@@ -72,31 +155,7 @@ public class PhysicalAttribute {
 		return req.toString();
 	}
 
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
-	public void setLength(int length) {
-		this.length = length;
-	}
-
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
-
-	public void setDimensionUnit(DimensionUnit unit) {
-		this.dimensionUnit = unit;
-	}
-
-	public void setWeightUnit(WeightUnit weightUnit) {
-		this.weightUnit = weightUnit;
-	}
-
-	public void setSystemRequirements() {
+	public void setSystemRequirementsByUser() {
 		if (systemRequirement.length == reqIndex) {
 			System.out.print("""
 			Requirements store is full
@@ -133,7 +192,8 @@ public class PhysicalAttribute {
 			: """);
 
 			int in = Math.abs(scan.nextInt());
-			if (in == 1) this.setSystemRequirements();
+			scan.nextLine();
+			if (in == 1) this.setSystemRequirementsByUser();
 		}
 
 		for (int i = 0; i < numberOfFeatures; i++) {
@@ -159,35 +219,8 @@ public class PhysicalAttribute {
 		}
 	}
 
-	public DimensionUnit viewDimensionUnit() {
-		return this.dimensionUnit;
-	}
-
-	public String viewDimensionUnits() {
-		StringBuilder dimensionUnits = new StringBuilder();
-		int i = 1;
-
-		for (DimensionUnit unit: this.dimensionUnits) {
-			dimensionUnits.append(i++).append(".")
-			.append(unit).append('\n');
-		}
-
-		return dimensionUnits.toString();
-	}
-
 	public WeightUnit viewWeightUnit() {
 		return this.weightUnit;
-	}
-
-	public String viewWeightUnits() {
-		StringBuilder weightUnits = new StringBuilder();
-		int i = 1;
-
-		for (WeightUnit unit: this.weightUnits) {
-			weightUnits.append(i++).append(".").append(unit).append('\n');
-		}
-
-		return weightUnits.toString();
 	}
 
 	@Override

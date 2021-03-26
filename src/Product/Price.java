@@ -29,16 +29,18 @@ public class Price {
 		return regular;
 	}
 
-	public void setRegular(double regular) {
-		this.regular = regular;
+	public void setRegular() {
+		System.out.print("Enter Regular Price: ");
+		this.regular = scan.nextDouble();
 	}
 
 	public String getDiscount() {
 		return this.discount + "%";
 	}
 
-	public void setDiscount(int discount) {
-		this.discount = discount;
+	public void setDiscount() {
+		System.out.print("Enter a discount in integer percentage: ");
+		this.discount = scan.nextInt();
 	}
 
 	public CurrencyUnit getCurrency() {

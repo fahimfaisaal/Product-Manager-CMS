@@ -32,16 +32,18 @@ public class Product {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName() {
+		System.out.print("Enter the product name: ");
+		this.name = scan.nextLine();
 	}
 
 	public String getModel() {
 		return this.model;
 	}
 
-	public void setModel(String model) {
-		this.model = model;
+	public void setModel() {
+		System.out.printf("Enter the %s model: ", this.name);
+		this.model = scan.nextLine();
 	}
 
 	public String getId() {
@@ -52,8 +54,9 @@ public class Product {
 		return brand;
 	}
 
-	public void setBrand(String brand) {
-		this.brand = brand;
+	public void setBrand() {
+		System.out.printf("Enter the %s brand: ", this.name);
+		this.brand = scan.nextLine();
 	}
 
 	public Status getCurrentStatus() {
@@ -98,16 +101,18 @@ public class Product {
 		return summary;
 	}
 
-	public void setSummary(String summary) {
-		this.summary = summary;
+	public void setSummary() {
+		System.out.printf("Enter a summary about %s: ", this.name);
+		this.summary = scan.nextLine();
 	}
 
 	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescription() {
+		System.out.printf("Enter a description about %s: ", this.name);
+		this.description = scan.nextLine();
 	}
 
 	public void getFaqs() {
