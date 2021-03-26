@@ -1,6 +1,7 @@
 package Product;
 
 import Product.enums.Status;
+
 import java.util.*;
 
 public class Product {
@@ -18,12 +19,12 @@ public class Product {
 	private final Status[] statuses = {Status.UPCOMING, Status.IN_STOCK, Status.OUT_OF_STOCK};
 
 	public Product() {
-		this.name = "null";
-		this.model = "null";
+		this.name = null;
+		this.model = null;
 		this.id = UUID.randomUUID().toString();
-		this.brand = "null";
-		this.summary = "null";
-		this.description = "null";
+		this.brand = null;
+		this.summary = null;
+		this.description = null;
 		this.status = Status.UPCOMING;
 	}
 
@@ -78,7 +79,7 @@ public class Product {
 
 		for (Status status: this.statuses) {
 			statusesString.append(i++).append(".")
-					 .append(status).append('\n');
+					 .append(status.toString().toLowerCase(Locale.ROOT)).append('\n');
 		}
 
 		return statusesString.toString();
@@ -146,27 +147,75 @@ public class Product {
 		}
 	}
 
-	public void setFaqsFromUser() {
-		if (faqIndex < 10) {
-			System.out.printf("Number of FAQ is %d\nYou could add %d FAQ\n", faqIndex, 10 - faqIndex);
-			System.out.print("Enter the number of FAQ set: ");
+	public void setFaqsByUser() {
+		if (faqs.length == faqIndex) {
+			System.out.print("""
+   		FAQ's store is full :(
+   		* Enter 1 for remove FAQ
+   		* Enter any for exit
+			:\s""");
 
-			int numberOfFaqs = scan.nextInt();
-			scan.nextLine();
-
-			this.setFaqs(numberOfFaqs);
-		} else {
-			System.out.print("The FAQ store is full :(\n* Enter 1 for remove.\n* Enter any for exit.\n: ");
-			int in = scan.nextInt();
+			int in = Math.abs(scan.nextInt());
 
 			if (in == 1) {
-				this.removeFAQ();
-				this.setFaqsFromUser();
-			}
+				this.removeFAQs();
+			} else return;
+		}
+
+		System.out.printf("""
+		Number of FAQ is %d
+		You could add %d FAQ
+		Enter the number of FAQ set:\s""",
+		faqIndex, 10 - faqIndex);
+
+		int numberOfFaqs = Math.abs(scan.nextInt());
+		scan.nextLine();
+
+		if (numberOfFaqs > 10 || numberOfFaqs > 10 - faqIndex) {
+			numberOfFaqs = 0;
+
+			System.out.print("""
+			Number is out of range!
+			* Enter 1 for retry.
+			* Enter any for exit.
+			:\s""");
+			int in = Math.abs(scan.nextInt());
+
+			if (in == 1) this.setFaqsByUser();
+		}
+
+		this.setFaqs(numberOfFaqs);
+	}
+
+	public void removeFAQs() {
+		System.out.print("Enter the number of delete: ");
+
+		int deleteCount = Math.abs(scan.nextInt());
+
+		if (deleteCount > faqIndex) {
+			System.out.println("Number is out of range!\nPlease try again.");
+			this.removeFAQs();
+		}
+
+		for (int i = 0; i < deleteCount; i++) {
+			faqs[--faqIndex] = null;
 		}
 	}
 
-	public void removeFAQ() {
-		faqs[--faqIndex] = null;
+	@Override
+	public String toString() {
+		return "Product {" +
+		"name=" + name + ",\n" +
+		" model=" + model + ",\n" +
+		" id=" + id + ",\n" +
+		" brand=" + brand + ",\n" +
+		" summary=" + summary + ",\n" +
+		" description=" + description + ",\n" +
+		" status=" + status + ",\n" +
+		" scan=" + scan + ",\n" +
+		" faqs->\n" + this.viewFAQs() + "," +
+		" faqIndex=" + faqIndex + ",\n" +
+		" statuses->\n" + this.viewStatuses() + "," + +
+		'}';
 	}
 }

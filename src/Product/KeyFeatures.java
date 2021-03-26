@@ -29,7 +29,7 @@ public class KeyFeatures {
 
 	private CapacityUnit getCapacityUnit(int index) {
 		if (index > capacityUnits.length) {
-			System.out.println("index is out of length");
+			System.out.println("Index is out of length");
 			return this.capacityUnit;
 		}
 

@@ -2,6 +2,7 @@ package Product;
 
 import Product.enums.DimensionUnit;
 import Product.enums.WeightUnit;
+import java.util.Scanner;
 
 public class PhysicalAttribute {
 	private int width;
@@ -11,6 +12,7 @@ public class PhysicalAttribute {
 	private int weight;
 	private WeightUnit weightUnit;
 
+	private final Scanner scan = new Scanner(System.in);
 	private final String[] systemRequirement = new String[10];
 	private final DimensionUnit[] dimensionUnits = {DimensionUnit.CM, DimensionUnit.MM, DimensionUnit.M};
 	private final WeightUnit[] weightUnits = {WeightUnit.KG, WeightUnit.LT, WeightUnit.G, WeightUnit.POUND};
@@ -87,15 +89,66 @@ public class PhysicalAttribute {
 		this.weightUnit = weightUnit;
 	}
 
-	public void pushSystemRequirement(String[] requirements) {
-		for (String req : requirements) {
+	public void setSystemRequirements() {
+		if (systemRequirement.length == reqIndex) {
+			System.out.print("""
+   		Requirements store is full :(
+   		* Enter 1 for remove requirement
+   		* Enter any for exit
+			:\s""");
+
+			int in = Math.abs(scan.nextInt());
+
+			if (in == 1) {
+				this.removeSystemRequirements();
+			} else return;
+		}
+
+		int haveAddFeatures = systemRequirement.length - reqIndex;
+		System.out.printf(
+		"""
+		Number of requirements %d
+		You could add %d items
+		Enter the number of requirements:\s""",
+		reqIndex, haveAddFeatures);
+		int numberOfFeatures = Math.abs(scan.nextInt());
+		scan.nextLine();
+
+		if (
+			numberOfFeatures > systemRequirement.length ||
+			numberOfFeatures > haveAddFeatures
+		) {
+			numberOfFeatures = 0;
+			System.out.print("""
+			Number is out of range!
+			* Enter 1 for retry
+			* Enter any for exit
+			: """);
+
+			int in = Math.abs(scan.nextInt());
+			if (in == 1) this.setSystemRequirements();
+		}
+
+		for (int i = 0; i < numberOfFeatures; i++) {
+			System.out.print("Set a requirement(" + (reqIndex + 1) + "): ");
+			String req = scan.nextLine();
 			systemRequirement[reqIndex++] = req;
 		}
+
 	}
 
-	public void popSystemRequirementItem(int deleteCount) {
+	public void removeSystemRequirements() {
+		System.out.print("Enter the number of delete: ");
+		int deleteCount = Math.abs(scan.nextInt());
+
+		if (deleteCount > reqIndex) {
+			deleteCount = 0;
+			System.out.println("Number is out of range!\nPlease try again.");
+			this.removeSystemRequirements();
+		}
+
 		for (int i = 0; i < deleteCount; i++) {
-			systemRequirement[reqIndex--] = null;
+			systemRequirement[--reqIndex] = null;
 		}
 	}
 
@@ -108,7 +161,8 @@ public class PhysicalAttribute {
 		int i = 1;
 
 		for (DimensionUnit unit: this.dimensionUnits) {
-			dimensionUnits.append(i++).append(".").append(unit).append('\n');
+			dimensionUnits.append(i++).append(".")
+			.append(unit).append('\n');
 		}
 
 		return dimensionUnits.toString();
