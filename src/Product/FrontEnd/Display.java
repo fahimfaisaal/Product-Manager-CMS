@@ -42,16 +42,20 @@ public class Display {
 						
 					* Warranty - %s
 		---------------------------------------------------------------------------------------
-				FAQs -> %s
+				Features -> %s
 		---------------------------------------------------------------------------------------
 				Description -> %s
+		---------------------------------------------------------------------------------------
+				FAQs -> %s 
+		_______________________________________________________________________________________
 				
 		%n""",
 		product.getName(), product.getModel(), product.getBrand(), product.getCurrentStatus(),
 		price.getRegular(), currencySymbol, price.getCurrent(), currencySymbol,
 		price.getDiscount(), price.getSaveAmount(), currencySymbol,
 		product.getSummary(), capacity, readSpeed, connectivity, dimension, weight, systemRequirements,
-		specification.getWarranty(), product.getFAQs(), product.getDescription()
+		specification.getWarranty(), features.getFeatures(), product.getDescription(),
+		 product.getFAQs()
 		);
 	}
 
@@ -73,7 +77,7 @@ public class Display {
 				case "show" -> frontend();
 				case "close" -> System.out.println("Closing.....");
 				default -> {
-					System.out.printf("'%s' command is invalid!", firstCommand);
+					System.out.printf("'%s' command is invalid!\n", firstCommand);
 				}
 			}
 		}
