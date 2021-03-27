@@ -11,7 +11,11 @@ public class Features {
 		StringBuilder features = new StringBuilder();
 
 		for (int i = 0; i < featuresIndex; i++) {
-			features.append("* ").append(this.features[i]).append('\n');
+			if (i == featuresIndex - 1) {
+				features.append("* ").append(this.features[i]).append("\n");
+			} else {
+				features.append("* ").append(this.features[i]).append("\n\t\t\t\t\t");
+			}
 		}
 
 		return features.toString();
@@ -34,6 +38,7 @@ public class Features {
 			: """);
 
 			int in = Math.abs(scan.nextInt());
+			scan.nextLine();
 
 			if (in == 1) {
 				this.removeFeatures();
@@ -60,6 +65,8 @@ public class Features {
 			: """);
 
 			int in = Math.abs(scan.nextInt());
+			scan.nextLine();
+
 			if (in == 1) this.setFeatureByUser();
 		}
 
@@ -88,6 +95,8 @@ public class Features {
 			:\s""");
 
 			int in = Math.abs(scan.nextInt());
+			scan.nextLine();
+
 			if (in == 1) this.removeFeatures();
 		}
 

@@ -96,7 +96,9 @@ public class Price {
 		System.out.println(this.viewCurrency());
 		System.out.print("Select a currency unit: ");
 
-		int index = scan.nextInt();
+		int index = Math.abs(scan.nextInt());
+		scan.nextLine();
+
 		this.setCurrencyUnit(this.getCurrencyUnit(index));
 	}
 

@@ -83,6 +83,7 @@ public class Product {
 		System.out.print("Select a status: ");
 
 		int index = scan.nextInt();
+		scan.nextLine();
 
 		this.setStatus(this.getStatus(index));
 	}
@@ -171,6 +172,7 @@ public class Product {
 			:\s""");
 
 			int in = Math.abs(scan.nextInt());
+			scan.nextLine();
 
 			if (in == 1) {
 				this.removeFAQs();
@@ -195,6 +197,7 @@ public class Product {
 			* Enter any for exit.
 			:\s""");
 			int in = Math.abs(scan.nextInt());
+			scan.nextLine();
 
 			if (in == 1) this.setFaqsByUser();
 		}
@@ -206,6 +209,7 @@ public class Product {
 		System.out.print("Enter the number of delete: ");
 
 		int deleteCount = Math.abs(scan.nextInt());
+		scan.nextLine();
 
 		if (deleteCount > faqIndex) {
 			System.out.println("Number is out of range!\nPlease try again.");

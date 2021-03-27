@@ -60,6 +60,7 @@ public class Specification {
 		System.out.print("Select a warranty: ");
 
 		int index = Math.abs(scan.nextInt());
+		scan.nextLine();
 
 		this.setWarranty(this.getWarranty(index));
 	}

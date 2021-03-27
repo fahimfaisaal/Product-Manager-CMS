@@ -60,7 +60,7 @@ public class KeyFeatures {
 		System.out.println(this.viewCapacityUnits());
 		System.out.print("Select a capacity unit: ");
 
-		int index = scan.nextInt();
+		int index = Math.abs(scan.nextInt());
 
 		this.setCapacityUnit(this.getCapacityUnit(index));
 	}

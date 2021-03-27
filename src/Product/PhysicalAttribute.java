@@ -35,6 +35,7 @@ public class PhysicalAttribute {
 
 	public void setWidth() {
 		System.out.print("Enter the Products width: ");
+
 		this.width = Math.abs(scan.nextInt());
 		scan.nextLine();
 	}
@@ -49,6 +50,7 @@ public class PhysicalAttribute {
 
 	public void setHeight() {
 		System.out.print("Enter the Products height: ");
+
 		this.height = Math.abs(scan.nextInt());
 		scan.nextLine();
 	}
@@ -63,6 +65,7 @@ public class PhysicalAttribute {
 
 	public void setLength() {
 		System.out.print("Enter the Products length: ");
+
 		this.length = Math.abs(scan.nextInt());
 		scan.nextLine();
 	}
@@ -123,6 +126,7 @@ public class PhysicalAttribute {
 
 	public void setWeight() {
 		System.out.print("Enter the Products weight: ");
+
 		this.weight = Math.abs(scan.nextInt());
 		scan.nextLine();
 	}
@@ -164,10 +168,6 @@ public class PhysicalAttribute {
 		this.setWeightUnit(this.getWeightUnit(0));
 	}
 
-	public int getReqIndex() {
-		return this.reqIndex;
-	}
-
 	public String viewSystemRequirement() {
 		StringBuilder req = new StringBuilder();
 
@@ -188,6 +188,7 @@ public class PhysicalAttribute {
 			: """);
 
 			int in = Math.abs(scan.nextInt());
+			scan.nextLine();
 
 			if (in == 1) {
 				this.removeSystemRequirements();
@@ -201,6 +202,7 @@ public class PhysicalAttribute {
 		You could add %d items
 		Enter the number of requirements:\s""",
 		reqIndex, haveAddFeatures);
+
 		int numberOfFeatures = Math.abs(scan.nextInt());
 		scan.nextLine();
 
@@ -217,6 +219,7 @@ public class PhysicalAttribute {
 
 			int in = Math.abs(scan.nextInt());
 			scan.nextLine();
+
 			if (in == 1) this.setSystemRequirementsByUser();
 		}
 
