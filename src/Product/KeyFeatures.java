@@ -28,6 +28,10 @@ public class KeyFeatures {
 		this.capacity = scan.nextLong();
 	}
 
+	public void removeCapacity() {
+		this.capacity = 0;
+	}
+
 	private CapacityUnit getCapacityUnit(int index) {
 		if (index > capacityUnits.length) {
 			System.out.println("Index is out of length");
@@ -61,6 +65,10 @@ public class KeyFeatures {
 		this.setCapacityUnit(this.getCapacityUnit(index));
 	}
 
+	public void removeCapacityUnit() {
+		this.capacityUnit = CapacityUnit.KB;
+	}
+
 	public String getReadSpeed() {
 		return readSpeed;
 	}
@@ -70,6 +78,10 @@ public class KeyFeatures {
 		this.readSpeed = scan.nextLine();
 	}
 
+	public void removeReadSpeed() {
+		this.readSpeed = null;
+	}
+
 	public String getConnectivity() {
 		return connectivity;
 	}
@@ -77,6 +89,10 @@ public class KeyFeatures {
 	public void setConnectivity() {
 		System.out.print("Enter a connectivity: ");
 		this.connectivity = scan.nextLine();
+	}
+
+	public void removeConnectivity() {
+		this.readSpeed = null;
 	}
 
 	@Override

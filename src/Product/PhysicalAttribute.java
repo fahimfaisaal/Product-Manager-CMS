@@ -16,8 +16,8 @@ public class PhysicalAttribute {
 
 	private final Scanner scan = new Scanner(System.in);
 	private final String[] systemRequirement = new String[10];
-	private final DimensionUnit[] dimensionUnits = {DimensionUnit.CM, DimensionUnit.MM, DimensionUnit.M};
-	private final WeightUnit[] weightUnits = {WeightUnit.KG, WeightUnit.LT, WeightUnit.G, WeightUnit.POUND};
+	private final DimensionUnit[] dimensionUnits = {DimensionUnit.MM, DimensionUnit.CM,DimensionUnit.M};
+	private final WeightUnit[] weightUnits = {WeightUnit.G, WeightUnit.KG, WeightUnit.LT,  WeightUnit.POUND};
 	private int reqIndex = 0;
 
 	public PhysicalAttribute() {
@@ -39,6 +39,10 @@ public class PhysicalAttribute {
 		scan.nextLine();
 	}
 
+	public void removeWidth() {
+		this.width = 0;
+	}
+
 	public int getHeight() {
 		return height;
 	}
@@ -47,6 +51,10 @@ public class PhysicalAttribute {
 		System.out.print("Enter the Products height: ");
 		this.height = Math.abs(scan.nextInt());
 		scan.nextLine();
+	}
+
+	public void removeHeight() {
+		this.height = 0;
 	}
 
 	public int getLength() {
@@ -59,14 +67,12 @@ public class PhysicalAttribute {
 		scan.nextLine();
 	}
 
-	public String getWeight() {
-		return weight + "" + this.weightUnit.toString().toLowerCase(Locale.ROOT);
+	public void removeLength() {
+		this.length = 0;
 	}
 
-	public void setWeight() {
-		System.out.print("Enter the Products weight: ");
-		this.weight = Math.abs(scan.nextInt());
-		scan.nextLine();
+	public String getDimension() {
+		return this.width + "(w) x " + this.height + "(h) x " + this.length + "(l)" + this.dimensionUnit.toString().toLowerCase(Locale.ROOT);
 	}
 
 	private DimensionUnit getDimensionUnit(int index) {
@@ -75,10 +81,6 @@ public class PhysicalAttribute {
 		}
 
 		return dimensionUnits[index - 1];
-	}
-
-	public String getDimension() {
-		return this.width + "(w) x " + this.height + "(h) x " + this.length + "(l)" + this.dimensionUnit.toString().toLowerCase(Locale.ROOT);
 	}
 
 	private void setDimensionUnit(DimensionUnit unit) {
@@ -111,6 +113,24 @@ public class PhysicalAttribute {
 		return dimensionUnits.toString();
 	}
 
+	public void removeDimensionUnit() {
+		this.setDimensionUnit(this.getDimensionUnit(0));
+	}
+
+	public String getWeight() {
+		return weight + "" + this.weightUnit.toString().toLowerCase(Locale.ROOT);
+	}
+
+	public void setWeight() {
+		System.out.print("Enter the Products weight: ");
+		this.weight = Math.abs(scan.nextInt());
+		scan.nextLine();
+	}
+
+	public void removeWeight() {
+		this.weight = 0;
+	}
+
 	private WeightUnit getWeightUnit(int index) {
 		return weightUnits[index - 1];
 	}
@@ -138,6 +158,10 @@ public class PhysicalAttribute {
 		}
 
 		return weightUnits.toString();
+	}
+
+	public void removeWeightUnit() {
+		this.setWeightUnit(this.getWeightUnit(0));
 	}
 
 	public int getReqIndex() {
@@ -217,10 +241,6 @@ public class PhysicalAttribute {
 		for (int i = 0; i < deleteCount; i++) {
 			systemRequirement[--reqIndex] = null;
 		}
-	}
-
-	public WeightUnit viewWeightUnit() {
-		return this.weightUnit;
 	}
 
 	@Override

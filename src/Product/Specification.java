@@ -2,6 +2,7 @@ package Product;
 
 import Product.enums.Warranty;
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -10,8 +11,8 @@ public class Specification {
 	private final PhysicalAttribute physicalAttributes = new PhysicalAttribute();
 	private Warranty warranty;
 
+	private final Warranty[] warranties = {Warranty.NO_WARRANTY, Warranty.ONE_YEAR_WARRANTY, Warranty.YEARS_WARRANTY, Warranty.LIFETIME_WARRANTY};
 	private final Scanner scan = new Scanner(System.in);
-	private final Warranty[] warranties = {Warranty.NO_WARRANTY, Warranty.YEAR_WARRANTY, Warranty.YEARS_WARRANTY, Warranty.LIFETIME_WARRANTY};
 
 	public KeyFeatures getKeyFeatures() {
 		return this.keyFeatures;
@@ -29,7 +30,7 @@ public class Specification {
 		return this.warranty;
 	}
 
-	public Warranty getWarranty(int index) {
+	private Warranty getWarranty(int index) {
 		if (index > this.warranties.length) {
 			System.out.println("Index is out of length!");
 			this.warranty = this.getWarranty();
@@ -42,7 +43,7 @@ public class Specification {
 		this.warranty = warranty;
 	}
 
-	public String viewWarranties() {
+	private String viewWarranties() {
 		StringBuilder warrantyString = new StringBuilder();
 		int i = 1;
 
@@ -55,12 +56,25 @@ public class Specification {
 	}
 
 	public void setWarrantyByUser() {
-		Console.clear();
 		System.out.println(this.viewWarranties());
 		System.out.print("Select a warranty: ");
 
 		int index = Math.abs(scan.nextInt());
 
 		this.setWarranty(this.getWarranty(index));
+	}
+
+	public void removeWarranty() {
+		this.setWarranty(this.getWarranty(0));
+	}
+
+	@Override
+	public String toString() {
+		return "Specification {" +
+		"keyFeatures=" + keyFeatures.toString() +
+		" physicalAttributes=" + physicalAttributes.toString() + ",\n" +
+		", warranty=" + warranty + ",\n" +
+		", warranties=" + Arrays.toString(warranties) + "\n" +
+		'}';
 	}
 }

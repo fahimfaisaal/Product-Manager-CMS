@@ -5,28 +5,18 @@ import Product.enums.Status;
 import java.util.*;
 
 public class Product {
-	private String name;
-	private String model;
-	private final String id;
-	private String brand;
-	private String summary;
-	private String description;
-	private Status status;
+	private String name = null;
+	private String model = null;
+	private final String id = UUID.randomUUID().toString();
+	private String brand = null;
+	private String summary = null;
+	private String description = null;
+	private Status status = Status.OUT_OF_STOCK;
 
 	private final Scanner scan = new Scanner(System.in);
 	private final FAQ[] faqs = new FAQ[10];
 	private int faqIndex = 0;
 	private final Status[] statuses = {Status.UPCOMING, Status.IN_STOCK, Status.OUT_OF_STOCK};
-
-	public Product() {
-		this.name = null;
-		this.model = null;
-		this.id = UUID.randomUUID().toString();
-		this.brand = null;
-		this.summary = null;
-		this.description = null;
-		this.status = Status.UPCOMING;
-	}
 
 	public String getName() {
 		return name;
@@ -37,6 +27,10 @@ public class Product {
 		this.name = scan.nextLine();
 	}
 
+	public void removeName() {
+		this.name = null;
+	}
+
 	public String getModel() {
 		return this.model;
 	}
@@ -44,6 +38,10 @@ public class Product {
 	public void setModel() {
 		System.out.printf("Enter the %s model: ", this.name);
 		this.model = scan.nextLine();
+	}
+
+	public void removeModel() {
+		this.model = null;
 	}
 
 	public String getId() {
@@ -57,6 +55,10 @@ public class Product {
 	public void setBrand() {
 		System.out.printf("Enter the %s brand: ", this.name);
 		this.brand = scan.nextLine();
+	}
+
+	public void removeBrand() {
+		this.brand = null;
 	}
 
 	public Status getCurrentStatus() {
@@ -76,6 +78,15 @@ public class Product {
 			this.status = status;
 	}
 
+	public void setStatusByUser() {
+		System.out.println(this.viewStatuses());
+		System.out.print("Select a status: ");
+
+		int index = scan.nextInt();
+
+		this.setStatus(this.getStatus(index));
+	}
+
 	private String viewStatuses() {
 		StringBuilder statusesString = new StringBuilder();
 		int i = 1;
@@ -88,13 +99,8 @@ public class Product {
 		return statusesString.toString();
 	}
 
-	public void setStatusByUser() {
-		System.out.println(this.viewStatuses());
-		System.out.print("Select a status: ");
-
-		int index = scan.nextInt();
-
-		this.setStatus(this.getStatus(index));
+	public void removeStatus() {
+		this.status = Status.OUT_OF_STOCK;
 	}
 
 	public String getSummary() {
@@ -106,6 +112,10 @@ public class Product {
 		this.summary = scan.nextLine();
 	}
 
+	public void removeSummary() {
+		this.summary = null;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -115,16 +125,16 @@ public class Product {
 		this.description = scan.nextLine();
 	}
 
-	public void getFaqs() {
-		System.out.println(Arrays.toString(this.faqs));
+	public void removeDescription() {
+		this.description = null;
 	}
 
-	public String viewFAQs() {
+	public String getFAQs() {
 		StringBuilder faqs = new StringBuilder();
 
 		for (int i = 0; i < 10 && this.faqs[i] != null; i++) {
-			faqs.append("Q: ").append(this.faqs[i].getQuestion()).append('\n')
-					 .append("A: ").append(this.faqs[i].getAnswer()).append('\n');
+			faqs.append("Q: ").append(this.faqs[i].getQuestion()).append("\n\t\t\t\t")
+					 .append("A: ").append(this.faqs[i].getAnswer()).append("\n\t\t\t\t");
 		}
 
 		return faqs.toString();
@@ -153,7 +163,6 @@ public class Product {
 	}
 
 	public void setFaqsByUser() {
-		Console.clear();
 		if (faqs.length == faqIndex) {
 			System.out.print("""
    		FAQ's store is full :(
@@ -180,7 +189,6 @@ public class Product {
 		if (numberOfFaqs > 10 || numberOfFaqs > 10 - faqIndex) {
 			numberOfFaqs = 0;
 
-			Console.clear();
 			System.out.print("""
 			Number is out of range!
 			* Enter 1 for retry.
@@ -195,7 +203,6 @@ public class Product {
 	}
 
 	public void removeFAQs() {
-		Console.clear();
 		System.out.print("Enter the number of delete: ");
 
 		int deleteCount = Math.abs(scan.nextInt());
@@ -221,7 +228,7 @@ public class Product {
 		" description=" + description + ",\n" +
 		" status=" + status + ",\n" +
 		" scan=" + scan + ",\n" +
-		" faqs->\n" + this.viewFAQs() + "," +
+		" faqs->\n" + this.getFAQs() + "," +
 		" faqIndex=" + faqIndex + ",\n" +
 		" statuses->\n" + this.viewStatuses() + "," + +
 		'}';

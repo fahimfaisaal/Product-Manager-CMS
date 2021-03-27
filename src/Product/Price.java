@@ -34,6 +34,10 @@ public class Price {
 		this.regular = scan.nextDouble();
 	}
 
+	public void removeRegularPrice() {
+		this.regular = 0.0;
+	}
+
 	public String getDiscount() {
 		return this.discount + "%";
 	}
@@ -41,6 +45,10 @@ public class Price {
 	public void setDiscount() {
 		System.out.print("Enter a discount in integer percentage: ");
 		this.discount = scan.nextInt();
+	}
+
+	public void removeDiscount() {
+		this.discount = 0;
 	}
 
 	public CurrencyUnit getCurrency() {
@@ -90,6 +98,10 @@ public class Price {
 
 		int index = scan.nextInt();
 		this.setCurrencyUnit(this.getCurrencyUnit(index));
+	}
+
+	public void removeCurrencyUnit() {
+		this.setCurrencyUnit(this.getCurrencyUnit(0));
 	}
 
 	@Override
