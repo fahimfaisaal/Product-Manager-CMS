@@ -231,7 +231,6 @@ public class Product {
 		" summary=" + summary + ",\n" +
 		" description=" + description + ",\n" +
 		" status=" + status + ",\n" +
-		" scan=" + scan + ",\n" +
 		" faqs->\n" + this.getFAQs() + "," +
 		" faqIndex=" + faqIndex + ",\n" +
 		" statuses->\n" + this.viewStatuses() + "," + +
