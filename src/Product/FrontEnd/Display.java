@@ -76,9 +76,7 @@ public class Display {
 				case "help" -> help();
 				case "show" -> frontend();
 				case "close" -> System.out.println("Closing.....");
-				default -> {
-					System.out.printf("'%s' command is invalid!\n", firstCommand);
-				}
+				default -> System.out.printf("'%s' command is invalid!\n", firstCommand);
 			}
 		}
 	}
