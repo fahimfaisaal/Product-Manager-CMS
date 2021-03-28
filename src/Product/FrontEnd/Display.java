@@ -50,12 +50,12 @@ public class Display {
 		_______________________________________________________________________________________
 				
 		%n""",
-		product.getName(), product.getModel(), product.getBrand(), product.getCurrentStatus(),
-		price.getRegular(), currencySymbol, price.getCurrent(), currencySymbol,
-		price.getDiscount(), price.getSaveAmount(), currencySymbol,
-		product.getSummary(), capacity, readSpeed, connectivity, dimension, weight, systemRequirements,
+		product.getName(), product.getModel(), product.getBrand(),
+		product.getCurrentStatus(), price.getRegular(), currencySymbol, price.getCurrent(),
+		currencySymbol, price.getDiscount(), price.getSaveAmount(), currencySymbol, product.getSummary(),
+		capacity, readSpeed, connectivity, dimension, weight, systemRequirements,
 		specification.getWarranty(), features.getFeatures(), product.getDescription(),
-		 product.getFAQs()
+		product.getFAQs()
 		);
 	}
 
@@ -143,8 +143,8 @@ public class Display {
 		System.out.println("""
 		For add properties value, type -> 'add <property name>'
 		For remove properties value, type -> 'remove <property name>'
-		display frontend, type -> 'show .'
-		type 'close .' for exit.
+		For display frontend, type -> 'show .'
+		Type 'close .' for exit the program.
 		""");
 	}
 }
