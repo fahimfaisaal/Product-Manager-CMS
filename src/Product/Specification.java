@@ -10,6 +10,7 @@ public class Specification {
 	private final KeyFeatures keyFeatures = new KeyFeatures();
 	private final PhysicalAttribute physicalAttributes = new PhysicalAttribute();
 	private Warranty warranty;
+	private String numberOfYears = "";
 
 	private final Warranty[] warranties = {Warranty.NO_WARRANTY, Warranty.ONE_YEAR_WARRANTY, Warranty.YEARS_WARRANTY, Warranty.LIFETIME_WARRANTY};
 	private final Scanner scan = new Scanner(System.in);
@@ -26,14 +27,14 @@ public class Specification {
 		this.warranty = Warranty.NO_WARRANTY;
 	}
 
-	public Warranty getWarranty() {
-		return this.warranty;
+	public String getWarranty() {
+		return numberOfYears + this.warranty;
 	}
 
 	private Warranty getWarranty(int index) {
 		if (index > this.warranties.length) {
 			System.out.println("Index is out of length!");
-			this.warranty = this.getWarranty();
+			return this.warranty;
 		}
 
 		return this.warranties[index - 1];
@@ -62,11 +63,18 @@ public class Specification {
 		int index = Math.abs(scan.nextInt());
 		scan.nextLine();
 
+		if (index == 3) {
+			System.out.print("Enter the number of years: ");
+
+			this.numberOfYears = scan.nextLine() + " ";
+		}
+
 		this.setWarranty(this.getWarranty(index));
 	}
 
 	public void removeWarranty() {
-		this.setWarranty(this.getWarranty(0));
+		this.setWarranty(this.getWarranty(1));
+		this.numberOfYears = "";
 	}
 
 	@Override
