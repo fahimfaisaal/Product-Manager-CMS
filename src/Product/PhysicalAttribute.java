@@ -165,7 +165,7 @@ public class PhysicalAttribute {
 	}
 
 	public void removeWeightUnit() {
-		this.setWeightUnit(this.getWeightUnit(0));
+		this.setWeightUnit(this.getWeightUnit(1));
 	}
 
 	public String viewSystemRequirement() {
