@@ -22,13 +22,13 @@ public class Display {
 				systemRequirements = specification.getPhysicalAttributes().viewSystemRequirement();
 
 		System.out.printf("""
-		---------------------------------------------------------------------------------------
+		-----------------------------------------------------------------------------------------
 		 		Name: %s | Model: %s | Brand: %s | Status: %s
-		---------------------------------------------------------------------------------------
+		-----------------------------------------------------------------------------------------
 		  		Regular price: %.2f%s | Price: %.2f%s | Discount: %s | Save money: %.2f%s
-		---------------------------------------------------------------------------------------
+		-----------------------------------------------------------------------------------------
 				Summary -> %s
-		---------------------------------------------------------------------------------------
+		-----------------------------------------------------------------------------------------
 				Specifications ->
 					* Key Features -
 						| Capacity: %s
@@ -41,13 +41,13 @@ public class Display {
 						| Requirements: %s
 						
 					* Warranty - %s
-		---------------------------------------------------------------------------------------
+		-----------------------------------------------------------------------------------------
 				Features -> %s
-		---------------------------------------------------------------------------------------
+		-----------------------------------------------------------------------------------------
 				Description -> %s
-		---------------------------------------------------------------------------------------
+		-----------------------------------------------------------------------------------------
 				FAQs -> %s 
-		_______________________________________________________________________________________
+		_________________________________________________________________________________________
 				
 		%n""",
 		product.getName(), product.getModel(), product.getBrand(),
@@ -67,21 +67,31 @@ public class Display {
 			System.out.print("Drop your command: ");
 
 			fullCommand = scan.nextLine();
+
+			if (fullCommand.equals("")) {
+				fullCommand = "empty .";
+			}
+
+			fullCommand += " empty";
+
 			String firstCommand = fullCommand.split("\s")[0].toLowerCase(Locale.ROOT);
 			String secondCommand = fullCommand.split("\s")[1].toLowerCase(Locale.ROOT);
 
 			switch (firstCommand) {
-				case "add" -> add(secondCommand);
-				case "remove" -> remove(secondCommand);
+				case "add" -> add(firstCommand, secondCommand);
+				case "remove" -> remove(firstCommand, secondCommand);
 				case "help" -> help();
 				case "show" -> frontend();
-				case "close" -> System.out.println("Closing.....");
+				case "close" -> {
+					System.out.println("Closing.....");
+					fullCommand = "close .";
+				}
 				default -> System.out.printf("'%s' command is invalid!\n", firstCommand);
 			}
 		}
 	}
 
-	private static void add(String secondCommand) {
+	private static void add(String firstCommand, String secondCommand) {
 		switch (secondCommand) {
 			case "name" -> product.setName();
 			case "model" -> product.setModel();
@@ -106,11 +116,11 @@ public class Display {
 			case "requirement" -> specification.getPhysicalAttributes().setSystemRequirementsByUser();
 			case "warranty" -> specification.setWarrantyByUser();
 			case "feature" -> features.setFeatureByUser();
-			default -> System.out.printf("'%s' command is Invalid!\n", secondCommand);
+			default -> System.out.printf("'%s' command is Invalid!\n", firstCommand + " " + secondCommand);
 		}
 	}
 
-	private static void remove(String secondCommand) {
+	private static void remove(String firstCommand, String secondCommand) {
 		switch (secondCommand) {
 			case "name" -> product.removeName();
 			case "model" -> product.removeModel();
@@ -135,7 +145,7 @@ public class Display {
 			case "requirement" -> specification.getPhysicalAttributes().removeSystemRequirements();
 			case "warranty" -> specification.removeWarranty();
 			case "feature" -> features.removeFeatures();
-			default -> System.out.printf("'%s' command is Invalid!\n", secondCommand);
+			default -> System.out.printf("'%s' command is Invalid!\n", firstCommand + " " + secondCommand);
 		}
 	}
 
