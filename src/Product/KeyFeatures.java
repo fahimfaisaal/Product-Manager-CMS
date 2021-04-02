@@ -26,6 +26,7 @@ public class KeyFeatures {
 	public void setCapacity() {
 		System.out.print("Enter the Products capacity: ");
 		this.capacity = scan.nextLong();
+		scan.nextLine();
 	}
 
 	public void removeCapacity() {
