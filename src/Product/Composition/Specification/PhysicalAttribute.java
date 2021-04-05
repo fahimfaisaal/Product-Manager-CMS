@@ -1,4 +1,4 @@
-package Product;
+package Product.Composition.Specification;
 
 import Product.enums.DimensionUnit;
 import Product.enums.WeightUnit;

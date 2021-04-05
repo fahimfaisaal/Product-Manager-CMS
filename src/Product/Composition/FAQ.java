@@ -1,4 +1,4 @@
-package Product;
+package Product.Composition;
 
 import java.util.*;
 

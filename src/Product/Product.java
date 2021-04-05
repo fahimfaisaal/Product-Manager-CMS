@@ -1,6 +1,9 @@
 package Product;
 
-import FrontEnd.Display;
+import Product.Composition.FAQ;
+import Product.Composition.Features;
+import Product.Composition.Price;
+import Product.Composition.Specification.Specification;
 import Product.enums.Status;
 
 import java.util.*;

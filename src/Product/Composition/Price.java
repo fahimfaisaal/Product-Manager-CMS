@@ -1,4 +1,4 @@
-package Product;
+package Product.Composition;
 
 import Product.enums.CurrencyUnit;
 import java.util.Scanner;
