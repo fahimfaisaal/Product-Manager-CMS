@@ -1,6 +1,6 @@
 package Main;
 
-import Product.FrontEnd.Display;
+import FrontEnd.Display;
 
 public class Main {
 
