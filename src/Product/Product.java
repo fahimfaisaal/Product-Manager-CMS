@@ -1,5 +1,6 @@
 package Product;
 
+import FrontEnd.Display;
 import Product.enums.Status;
 
 import java.util.*;
@@ -17,6 +18,12 @@ public class Product {
 	private final FAQ[] faqs = new FAQ[10];
 	private int faqIndex = 0;
 	private final Status[] statuses = {Status.UPCOMING, Status.IN_STOCK, Status.OUT_OF_STOCK};
+
+	// composition classes
+	private final Price price = new Price();
+	private final Specification specification = new Specification();
+	private final Features features = new Features();
+	private final FAQ faq = new FAQ();
 
 	public String getName() {
 		return name;
@@ -219,6 +226,22 @@ public class Product {
 		for (int i = 0; i < deleteCount; i++) {
 			faqs[--faqIndex] = null;
 		}
+	}
+
+	public Price getPrice() {
+		return this.price;
+	}
+
+	public Specification getSpecification() {
+		return this.specification;
+	}
+
+	public Features getFeatures() {
+		return this.features;
+	}
+
+	public FAQ getFaq() {
+		return this.faq;
 	}
 
 	@Override
