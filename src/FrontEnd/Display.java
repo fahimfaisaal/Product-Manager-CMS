@@ -73,8 +73,8 @@ public class Display {
 
 			String[] fullCommands = fullCommand.split("\s");
 
-			String firstCommand = fullcommads[0];
-			String secondCommand = fullcommads[1];
+			String firstCommand = fullCommands[0];
+			String secondCommand = fullCommands[1];
 
 			switch (firstCommand) {
 				case "add" -> add(firstCommand, secondCommand);
