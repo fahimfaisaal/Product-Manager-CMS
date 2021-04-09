@@ -63,7 +63,7 @@ public class Display {
 			System.out.println("\t___Type 'help .' for help___");
 			System.out.print("Drop your command: ");
 
-			fullCommand = scan.nextLine();
+			fullCommand = scan.nextLine().toLowerCase(Locale.ROOT);
 
 			if (fullCommand.equals("")) {
 				fullCommand = "empty .";
@@ -71,8 +71,10 @@ public class Display {
 
 			fullCommand += " empty";
 
-			String firstCommand = fullCommand.split("\s")[0].toLowerCase(Locale.ROOT);
-			String secondCommand = fullCommand.split("\s")[1].toLowerCase(Locale.ROOT);
+			String[] fullCommands = fullCommand.split("\s");
+
+			String firstCommand = fullCommands[0];
+			String secondCommand = fullCommands[1];
 
 			switch (firstCommand) {
 				case "add" -> add(firstCommand, secondCommand);
