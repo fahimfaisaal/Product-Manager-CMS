@@ -6,10 +6,10 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Display {
-	private static final Product product = new Product();;
+	private static final Product product = new Product();
 	private static final Scanner scan = new Scanner(System.in);
 
-	public void frontend() {
+	public static void frontend() {
 		String currencySymbol = product.getPrice().getCurrencySymbol(),
 				capacity = product.getSpecification().getKeyFeatures().getCapacity(),
 				readSpeed = product.getSpecification().getKeyFeatures().getReadSpeed(),
@@ -56,7 +56,7 @@ public class Display {
 		);
 	}
 
-	public void start() {
+	public static void start() {
 		String fullCommand = "";
 
 		while (!fullCommand.equals("close .")) {
