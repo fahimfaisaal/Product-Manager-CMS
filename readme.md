@@ -8,4 +8,4 @@ It's a **command-line** based **CRUD** application. which is can be controlled b
 - `close .` for close the application.
 - `help .` for get help.
 
-The UML Diagram of this application is [here](https://fahimfaisaal.github.io/Product-Manager/).
+The UML Diagram of this application is [here](https://app.diagrams.net/#Hfahimfaisaal%2FProduct-Manager%2Fmaster%2FUML-Diagram%2FProduct-Manager.drawio).
